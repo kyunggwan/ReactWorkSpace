@@ -6,8 +6,6 @@ function List (props){
       <div className='listbox'> 
           {props.item}
       </div>
-    
-
     </>
   )
 }
