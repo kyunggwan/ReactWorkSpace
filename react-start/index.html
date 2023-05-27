@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <div id = "root"></div> // root div 생성
+    </body>
+   <!-- React 불러오기 -->
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <!-- React DOM 불러오기 -->
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script>
+        const root = document.getElementById("root"); // root div를 불러온다
+        const span = React.createElement("span", {id:  "sexy-span" }, "Hello I'm a span");  // span 부분에 적는 것은 생성하고자 하는 HTML 태그와 똑같은 이름이어야 한다
+        ReactDOM.render(span, root); // span을 root안에 render 해 달라
+    </script>
+</html>
