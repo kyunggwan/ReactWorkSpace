@@ -11,8 +11,7 @@
 
     <script type="text/babel">
       const root = document.getElementById("root");
-
-      function App() {
+      function MinutesToHours() {
         const [amount, setAmount] = React.useState(0);
         const [flipped, setFlipped] = React.useState(false);
 
@@ -22,15 +21,14 @@
 
         const reset = () => setAmount(0);
         const onFlip = () => {
-          setFlipped((current)=> !current);
+          setFlipped((current) => !current);
         };
 
         return (
           <div>
-            <h1>Super Converter</h1>
             <label htmlFor="minutes">Minutes</label>
             <input
-              value={flipped ? amount * 60 : amount }
+              value={flipped ? amount * 60 : amount}
               id="minutes"
               placeholder="Minutes"
               type="number"
@@ -39,7 +37,7 @@
             />
             <label htmlFor="hours">Hours</label>
             <input
-              value={flipped ? amount : Math.round(amount / 60) }
+              value={flipped ? amount : Math.round(amount / 60)}
               id="hours"
               placeholder="Hours"
               type="number"
@@ -48,7 +46,28 @@
             />
             <h4>you want to convert {amount}</h4>
             <button onClick={reset}>reset</button>
-            <button onClick={onFlip}>{flipped ? "TurnBack":"Flip"}</button>
+            <button onClick={onFlip}>{flipped ? "TurnBack" : "Flip"}</button>
+          </div>
+        );
+      }
+      function KmToMiles() {
+        return <h3>KM 2 MILES</h3>;
+      }
+      function App() {
+        const [index, setIndex] = React.useState(0);
+        const onSelect = (event) => {
+          setIndex(event.target.value);
+        };
+        return (
+          <div>
+            <h1>Super Converter</h1>
+
+            <select value={index} onChange={onSelect}>
+              <option value="0">Minutes to Hours</option>
+              <option value="1">Km to Miles</option>
+            </select>
+            {index === "0" ? <MinutesToHours /> : null}
+            {index === "1" ? <KmToMiles /> : null}
           </div>
         );
       }
