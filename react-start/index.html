@@ -43,11 +43,12 @@
               id="hours"
               placeholder="Hours"
               type="number"
+              onChange={onChange}
               disabled={flipped === false}
             />
             <h4>you want to convert {amount}</h4>
             <button onClick={reset}>reset</button>
-            <button onClick={onFlip}>flip</button>
+            <button onClick={onFlip}>{flipped ? "TurnBack":"Flip"}</button>
           </div>
         );
       }
