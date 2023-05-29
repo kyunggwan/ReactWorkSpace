@@ -12,32 +12,23 @@
     <script type="text/babel">
       const root = document.getElementById("root");
 
-      function Title() {
+      function App() {
+        const [counter, setCounter] = React.useState(0);
+
+        function buttonClick() {
+            // set내부를 함수화해서 안전하게 처리
+          setCounter((current) => current +1);
+        }
+        
         return (
-          // JSX 요소를 반환하도록 수정
-          <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-            Hello, I'm a title
-          </h3>
+          <div>
+            <h3>Total clocks: {counter}</h3>
+            <button onClick={buttonClick}>Click me</button>
+          </div>
         );
       }
-    
-      // function과 const 형태 return과 괄호 차이
-      const Button = () => (
-        <button
-          style={{ backgroundColor: "tomato" }}
-          onClick={() => console.log("clicked")}
-        >
-          Click me
-        </button>
-      );
 
-      const Container = () => (
-        <div>
-          <Title />
-          <Button />
-        </div>
-      );
-      ReactDOM.render(<Container />, root);
+      ReactDOM.render(<App />, root);
     </script>
   </body>
 </html>
