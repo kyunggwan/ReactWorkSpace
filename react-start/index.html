@@ -10,68 +10,32 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script type="text/babel">
-      const root = document.getElementById("root");
-      function MinutesToHours() {
-        const [amount, setAmount] = React.useState(0);
-        const [flipped, setFlipped] = React.useState(false);
-
-        const onChange = (event) => {
-          setAmount(event.target.value);
-        };
-
-        const reset = () => setAmount(0);
-        const onFlip = () => {
-          setFlipped((current) => !current);
-        };
-
+      function Btn({banana, big}) {
         return (
-          <div>
-            <label htmlFor="minutes">Minutes</label>
-            <input
-              value={flipped ? amount * 60 : amount}
-              id="minutes"
-              placeholder="Minutes"
-              type="number"
-              onChange={onChange}
-              disabled={flipped === true}
-            />
-            <label htmlFor="hours">Hours</label>
-            <input
-              value={flipped ? amount : Math.round(amount / 60)}
-              id="hours"
-              placeholder="Hours"
-              type="number"
-              onChange={onChange}
-              disabled={flipped === false}
-            />
-            <h4>you want to convert {amount}</h4>
-            <button onClick={reset}>reset</button>
-            <button onClick={onFlip}>{flipped ? "TurnBack" : "Flip"}</button>
-          </div>
+          <button
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+              fontSize: big ? 30 : 16,
+            }}
+          >
+            {banana}
+          </button>
         );
       }
-      function KmToMiles() {
-        return <h3>KM 2 MILES</h3>;
-      }
+
       function App() {
-        const [index, setIndex] = React.useState(0);
-        const onSelect = (event) => {
-          setIndex(event.target.value);
-        };
         return (
           <div>
-            <h1>Super Converter</h1>
-
-            <select value={index} onChange={onSelect}>
-              <option value="0">Minutes to Hours</option>
-              <option value="1">Km to Miles</option>
-            </select>
-            {index === "0" ? <MinutesToHours /> : null}
-            {index === "1" ? <KmToMiles /> : null}
+            <Btn banana="Save Changes" big = {true} />
+            <Btn banana="Continue" big = {false}/>
           </div>
         );
       }
-
+      const root = document.getElementById("root");
       ReactDOM.render(<App />, root);
     </script>
   </body>
