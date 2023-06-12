@@ -7,36 +7,39 @@
     <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
     <!-- React DOM 불러오기 -->
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- prop-types 불러오기 -->
+    <script src="https://unpkg.com/prop-types/prop-types.min.js"></script>
+    <!-- Babel 불러오기 -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script type="text/babel">
-      function Btn({text, changeButton}) {
+      function Btn({ text, fontSize = 10 }) { // 14는 default값
         console.log(text, "was rendered");
         return (
           <button
-          onClick = {changeButton} 
             style={{
               backgroundColor: "tomato",
               color: "white",
               padding: "10px 20px",
               border: 0,
               borderRadius: 10,
-              
+              fontSize,
             }}
           >
             {text}
           </button>
         );
       }
-      // props변경없는 요소가 안변하게 기억하는 것이 memo
-      const MemorizedBtn = React.memo(Btn);
+
+      Btn.propTypes = {
+        text: PropTypes.string.isRequired,
+        fontSize: PropTypes.number,
+      };
       function App() {
-        const [value, setValue] = React.useState("Save Changes")
-        const changeValue = () => setValue("Revert Changes");
         return (
           <div>
-            <MemorizedBtn text={value} changeButton={changeValue}/>
-            <MemorizedBtn text="Continue" />
+            <Btn text="Save changes" fontSize={18} />
+            <Btn text={"continue"} />
           </div>
         );
       }
