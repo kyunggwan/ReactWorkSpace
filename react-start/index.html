@@ -13,8 +13,8 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script type="text/babel">
-      function Btn({ text, fontSize = 10 }) { // 14는 default값
-        console.log(text, "was rendered");
+      function Btn(props) {
+        console.log(props.text, "was rendered");
         return (
           <button
             style={{
@@ -23,10 +23,10 @@
               padding: "10px 20px",
               border: 0,
               borderRadius: 10,
-              fontSize,
+              fontSize: props.fontSize,
             }}
           >
-            {text}
+            {props.text}
           </button>
         );
       }
@@ -35,14 +35,20 @@
         text: PropTypes.string.isRequired,
         fontSize: PropTypes.number,
       };
+
+      Btn.defaultProps = {
+        fontSize: 14,
+      };
+
       function App() {
         return (
           <div>
             <Btn text="Save changes" fontSize={18} />
-            <Btn text={"continue"} />
+            <Btn text="continue" />
           </div>
         );
       }
+
       const root = document.getElementById("root");
       ReactDOM.render(<App />, root);
     </script>
