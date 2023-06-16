@@ -14,8 +14,11 @@ var initState = {
   ],
 };
 
-function reducer(state = initState, action) {
-  return state;
+function reducer(state = initState, action) { 
+  if(action.type === 'CHANGE_MODE'){
+    // state를 복사한 값, adction의 mode값으로 action저장
+    return {...state, mode:action.mode};
+  }
 }
 
 export default createStore(
