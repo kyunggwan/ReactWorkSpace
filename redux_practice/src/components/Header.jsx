@@ -22,6 +22,7 @@ class Header extends Component {
 }
 
 /**
+ * 리덕스 Handling 컴포넌트
  * Header 컴포넌트에 전달될 props 지정
  * connect(props, callback함수)
  * 인자 전달x, 함수 전달o
