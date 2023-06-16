@@ -16,10 +16,13 @@ var initState = {
 
 function reducer(state = initState, action) {
   switch (action.type) {
-    case "CHANGE_MODE":
+    case "WELCOME":
       return { ...state, mode: action.mode };
     default:
       return state;
+
+      case "READ":
+        return {...state, selected_content_id:action.id};
   }
 }
 

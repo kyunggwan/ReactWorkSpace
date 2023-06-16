@@ -31,7 +31,7 @@ export default connect(null,
   function(dispatch){
     return {
       onClick:function(){
-        dispatch({type:'CHANGE_MODE', mode: 'WELCOME'})
+        dispatch({type:'WELCOME'})
       }
     }
   })(Header);

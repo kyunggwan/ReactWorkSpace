@@ -4,7 +4,7 @@ export default class Article extends Component {
   render() {
     return (
       <article>
-        <h2>Wrlcome</h2>
+        <h2>Welcome</h2>
         Hello, WEB.
       </article>
     )
