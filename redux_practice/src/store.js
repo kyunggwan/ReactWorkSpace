@@ -1,7 +1,7 @@
 import { createStore } from "redux";
 
 var initState = {
-  mode: "READ",
+  mode: "WELCOME",
   welcome_content: {
     title: "WEB",
     desc: "Hello, Web",
@@ -17,7 +17,7 @@ var initState = {
 function reducer(state = initState, action) {
   switch (action.type) {
     case "WELCOME":
-      return { ...state, mode: action.mode };
+      return { ...state, mode: 'WELCOME' };
     default:
       return state;
 
