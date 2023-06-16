@@ -7,8 +7,8 @@ class Header extends Component {
       <div>
         <h1>
           <a
-            href="#weolcome"
-            onClick={function () {
+            href="#welcome"
+            onClick={function () {// 이 component에 전달된 props를 노출
               this.props.onClick();
             }.bind(this)}
           >
@@ -21,6 +21,11 @@ class Header extends Component {
   }
 }
 
+/**
+ * Header 컴포넌트에 전달될 props 지정
+ * connect(props, callback함수)
+ * 인자 전달x, 함수 전달o
+ */
 export default connect(null,
   function(dispatch){
     return {

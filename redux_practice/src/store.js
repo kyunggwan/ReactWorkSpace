@@ -14,10 +14,12 @@ var initState = {
   ],
 };
 
-function reducer(state = initState, action) { 
-  if(action.type === 'CHANGE_MODE'){
-    // state를 복사한 값, adction의 mode값으로 action저장
-    return {...state, mode:action.mode};
+function reducer(state = initState, action) {
+  switch (action.type) {
+    case "CHANGE_MODE":
+      return { ...state, mode: action.mode };
+    default:
+      return state;
   }
 }
 
