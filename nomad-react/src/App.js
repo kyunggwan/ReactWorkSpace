@@ -1,46 +1,21 @@
 import { useState, useEffect } from "react";
-
-function App() {
-  const [counter, setCounter] = useState(0);
-  const [keyword, setKeyword] = useState("");
-
-  const onChange = (e) => {
-    setKeyword(e.target.value);
-  };
-
-  const onClick = () => {
-    setCounter((prev) => prev + 1);
-  };
-  console.log("i run all the time");
-
-  // component 생성되는 처음 한번
+function Hello() {
   useEffect(() => {
-    console.log("CALL THE API...");
+    console.log("created :)");
+    // 이게 cleanUp function 닫힐때 실행됨
+    return () => console.log("destroyed :(");
   }, []);
-  // keyword가 변할때만 작동
-  useEffect(() => {
-    if (keyword !== "" && keyword.length > 5) {
-      console.log("Search for ", keyword);
-    }
-  }, [keyword]);
-  useEffect(() => {
-    console.log("I run when 'counter' changes");
-  }, [counter]);
-
-  useEffect(() => {
-    console.log("I run when 'counter' & 'keyword changes");
-  }, [counter, keyword]);
-
+  return <h1>Hello</h1>;
+}
+function App() {
+  const [showing, setShowing] = useState(false);
+  const onClick = () => {
+    setShowing((prev) => !prev);
+  };
   return (
     <div>
-      <input
-        type="text"
-        placeholder="search here..."
-        onChange={onChange}
-        value={keyword}
-      ></input>
-      <h1>{counter}</h1>
-      <button onClick={onClick}>Click!!!</button>
+      {showing ? <Hello /> : null}
+      <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
     </div>
   );
 }
