@@ -23,6 +23,9 @@ function App() {
       console.log("Search for ", keyword);
     }
   }, [keyword]);
+  useEffect(() => {
+    console.log("I run when 'counter' changes");
+  }, [counter]);
 
   return (
     <div>
