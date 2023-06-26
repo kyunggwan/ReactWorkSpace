@@ -88,17 +88,27 @@ function App() {
     draw(); // 이미지 다시 그리기
   };
 
+  const handleResetZoom = () => {
+    scaleRef.current = 1; // 배율 초기화
+    viewPosRef.current = INITIAL_POSITION; // 위치 초기화
+    draw(); // 이미지 다시 그리기
+  };
+
   return (
-    <canvas
-      ref={zoomCanvasRef} // canvas 요소에 zoomCanvasRef 참조 설정
-      width="500"
-      height="500"
-      style={{ border: "1px solid" }}
-      onMouseDown={handleMouseDown} // 마우스 이벤트 핸들러 연결
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onWheel={handleWheel}
-    />
+    <div>
+      <canvas
+        ref={zoomCanvasRef} // canvas 요소에 zoomCanvasRef 참조 설정
+        width="500"
+        height="500"
+        style={{ border: "1px solid" }}
+        onMouseDown={handleMouseDown} // 마우스 이벤트 핸들러 연결
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onWheel={handleWheel}
+      />
+
+      <button onClick={handleResetZoom}>Reset Image</button>
+    </div>
   );
 }
 
