@@ -1,16 +1,39 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export function useOnDraw(onDraw) {
   const canvasRef = useRef(null);
 
   const isDrawingRef = useRef(false); // Drawing 상태인지
 
+  const mouseMoveListenerRef = useRef(null);
+  const mouseDownListenerRef = useRef(null);
+  const mouseUpListenerRef = useRef(null);
+
+  const prevPointRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (mouseMoveListenerRef.current) {
+        window.removeEventListener("mousemove", mouseMoveListenerRef.current);
+      }
+      if (mouseUpListenerRef.current) {
+        window.removeEventListener("mouseup", mouseUpListenerRef.current);
+      }
+    };
+  }, []);
+
   function setCanvasRef(ref) {
     if (!ref) return;
+    if (canvasRef.current) {
+      canvasRef.current.removeEventListener(
+        "mousedown",
+        mouseDownListenerRef.current
+      );
+    }
     canvasRef.current = ref;
     initMouseMoveListener(); // 등록
     initMouseDownListener(); // 등록
-    initMouseUpListener();  // 등록
+    initMouseUpListener(); // 등록
   }
 
   // 1. 마우스를 따라서 그림 그려짐
@@ -20,10 +43,12 @@ export function useOnDraw(onDraw) {
         // Drawing 상태인 경우 그려라!
         const point = computePointInCanvas(e.clientX, e.clientY);
         const ctx = canvasRef.current.getContext("2d"); // 2d로 그림 그릴 것
-        if (onDraw) onDraw(ctx, point);
+        if (onDraw) onDraw(ctx, point, prevPointRef.current);
+        prevPointRef.current = point;
         console.log(point);
       }
     };
+    mouseMoveListenerRef.current = mouseMoveListener;
     window.addEventListener("mousemove", mouseMoveListener);
   }
 
@@ -33,6 +58,7 @@ export function useOnDraw(onDraw) {
     const listener = () => {
       isDrawingRef.current = true;
     };
+    mouseDownListenerRef.current = listener;
     canvasRef.current.addEventListener("mousedown", listener);
   }
 
@@ -41,6 +67,7 @@ export function useOnDraw(onDraw) {
     const listener = () => {
       isDrawingRef.current = false;
     };
+    mouseUpListenerRef.current = listener;
     window.addEventListener("mouseup", listener);
   }
 
