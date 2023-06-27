@@ -13,7 +13,7 @@ export default function Canvas({ width, height }) {
         width={width} 
         height={height} 
         style={canvasStyle}
-        ref={{setCanvasRef}}
+        ref={setCanvasRef}
       />
     </div>
   );
