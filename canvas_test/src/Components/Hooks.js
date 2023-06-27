@@ -36,6 +36,7 @@ export function useOnDraw(onDraw) {
     canvasRef.current.addEventListener("mousedown", listener);
   }
 
+  // 3, Mouse를 땠을때 그리기 상태 false
   function initMouseUpListener() {
     const listener = () => {
       isDrawingRef.current = false;
