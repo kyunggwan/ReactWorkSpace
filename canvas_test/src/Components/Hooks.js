@@ -66,6 +66,7 @@ export function useOnDraw(onDraw) {
   function initMouseUpListener() {
     const listener = () => {
       isDrawingRef.current = false;
+      prevPointRef.current = null;  // 마우스를 땔떄마다 전 좌표 제거
     };
     mouseUpListenerRef.current = listener;
     window.addEventListener("mouseup", listener);
