@@ -2,11 +2,28 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
+  var [funcShow, setFuncShow] = useState(true);
+  var [classShow, setClassShow] = useState(true);
+
   return (
     <div className="container">
       <h1>Hello World</h1>
-      <FuncComp initNumber={3}></FuncComp>
-      <ClassComp initNumber={3}></ClassComp>
+      <input
+        type="button"
+        value="remove func"
+        onClick={function () {
+          setFuncShow((prev) => !prev);
+        }}
+      />
+      <input
+        type="button"
+        value="remove class"
+        onClick={function () {
+          setClassShow((prev) => !prev);
+        }}
+      />
+      {funcShow ? <FuncComp initNumber={3}></FuncComp> : null}
+      {classShow ? <ClassComp initNumber={3}></ClassComp> : null}
     </div>
   );
 }
@@ -29,7 +46,7 @@ function FuncComp(props) {
         funcStyle
       );
     };
-  },[]);
+  }, []);
 
   useEffect(function () {
     console.log(
@@ -112,9 +129,9 @@ class ClassComp extends React.Component {
     date: new Date().toString(),
   };
 
-  componentWillMount() {
-    console.log("%cclass => componentWillMount", classStyle);
-  }
+  // componentWillMount() {
+  //   console.log("%cclass => componentWillMount", classStyle);
+  // }
   componentDidMount() {
     console.log("%cclass => componentDidMount", classStyle);
   }
@@ -122,11 +139,14 @@ class ClassComp extends React.Component {
     console.log("%cclass => shouldComponentUpdate", classStyle);
     return true;
   }
-  componentWillUpdate(nextProps, nextState) {
-    console.log("%cclass => componentWillUpdate", classStyle);
-  }
+  // componentWillUpdate(nextProps, nextState) {
+  //   console.log("%cclass => componentWillUpdate", classStyle);
+  // }
   componentDidUpdate(nextProps, nextState) {
     console.log("%cclass => componentDidUpdate", classStyle);
+  }
+  componentWillUnmount() {
+    console.log("%cclass => componentWillUnmount", classStyle);
   }
   render() {
     console.log("%cclass => render", classStyle);
