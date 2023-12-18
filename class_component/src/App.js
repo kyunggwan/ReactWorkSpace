@@ -36,31 +36,31 @@ function FuncComp(props) {
 
   useEffect(function () {
     console.log(
-      "%cfunc => useEffect (componentDidMount)" + ++funcId,
+      "%cfunc => useEffect[] (componentDidMount)" + ++funcId,
       funcStyle
     );
     document.title = number;
     return function () {
       console.log(
-        "%cfunc => useEffect return (componentWillUnmount)" + ++funcId,
+        "%cfunc => useEffect[] return (componentWillUnmount)" + ++funcId,
         funcStyle
       );
     };
   }, []);
 
-  useEffect(function () {
-    console.log(
-      "%cfunc => useEffect (componentDidMount + componentDidUpdate)" + ++funcId,
-      funcStyle
-    );
-    document.title = number + " : " + date;
-    return function () {
-      console.log(
-        "%cfunc => useEffect return (componentWillUnmount)" + ++funcId,
-        funcStyle
-      );
-    };
-  });
+  // useEffect(function () {
+  //   console.log(
+  //     "%cfunc => useEffect (componentDidMount + componentDidUpdate)" + ++funcId,
+  //     funcStyle
+  //   );
+  //   document.title = number + " : " + date;
+  //   return function () {
+  //     console.log(
+  //       "%cfunc => useEffect return (componentWillUnmount)" + ++funcId,
+  //       funcStyle
+  //     );
+  //   };
+  // });
 
   useEffect(
     function () {
