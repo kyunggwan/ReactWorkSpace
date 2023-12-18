@@ -19,6 +19,20 @@ function FuncComp(props) {
 
   useEffect(function () {
     console.log(
+      "%cfunc => useEffect (componentDidMount)" + ++funcId,
+      funcStyle
+    );
+    document.title = number;
+    return function () {
+      console.log(
+        "%cfunc => useEffect return (componentWillUnmount)" + ++funcId,
+        funcStyle
+      );
+    };
+  },[]);
+
+  useEffect(function () {
+    console.log(
       "%cfunc => useEffect (componentDidMount + componentDidUpdate)" + ++funcId,
       funcStyle
     );
@@ -30,6 +44,42 @@ function FuncComp(props) {
       );
     };
   });
+
+  useEffect(
+    function () {
+      console.log(
+        "%cfunc => useEffect number(componentDidMount + componentDidUpdate)" +
+          ++funcId,
+        funcStyle
+      );
+      document.title = number;
+      return function () {
+        console.log(
+          "%cfunc => useEffect number return (componentWillUnmount)" + ++funcId,
+          funcStyle
+        );
+      };
+    },
+    [number]
+  );
+
+  useEffect(
+    function () {
+      console.log(
+        "%cfunc => useEffect date(componentDidMount + componentDidUpdate)" +
+          ++funcId,
+        funcStyle
+      );
+      document.title = date;
+      return function () {
+        console.log(
+          "%cfunc => useEffect date return (componentWillUnmount)" + ++funcId,
+          funcStyle
+        );
+      };
+    },
+    [date]
+  );
 
   console.log("%cfunc => render" + ++funcId, funcStyle);
   return (
