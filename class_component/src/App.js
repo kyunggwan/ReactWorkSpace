@@ -23,6 +23,12 @@ function FuncComp(props) {
       funcStyle
     );
     document.title = number + " : " + date;
+    return function () {
+      console.log(
+        "%cfunc => useEffect return (componentWillUnmount)" + ++funcId,
+        funcStyle
+      );
+    };
   });
 
   console.log("%cfunc => render" + ++funcId, funcStyle);
