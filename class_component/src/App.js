@@ -11,9 +11,6 @@ function App() {
   );
 }
 
-/*
-    Functional Component에서는  Hook을 통해서 state 변경 가능
-*/
 function FuncComp(props) {
   var [number, setNumber] = useState(props.initNumber);
   var [date, setDate] = useState(new Date().toString());
@@ -40,16 +37,31 @@ function FuncComp(props) {
   );
 }
 
-/*
-    Functional Component에서는 아래 처럼 state의 값을 변경할 수 없었음
-    단순히 props를 받아서 표시    
-*/
+var classStyle='color:red';
 class ClassComp extends React.Component {
   state = {
     number: this.props.initNumber,
     date: new Date().toString(),
   };
+
+  componentWillMount(){
+    console.log('%cclass => componentWillMount', classStyle)
+  }
+  componentDidMount(){
+    console.log("%cclass => componentDidMount", classStyle);
+  }
+  shouldComponentUpdate(nextProps, nextState){
+    console.log("%cclass => shouldComponentUpdate", classStyle);
+    return true;
+  }
+  componentWillUpdate(nextProps, nextState){
+    console.log("%cclass => componentWillUpdate", classStyle);
+  }
+  componentDidUpdate(nextProps, nextState){
+    console.log("%cclass => componentDidUpdate", classStyle);
+  }
   render() {
+    console.log('%cclass => render', classStyle);
     return (
       <div className="container">
         <h2>class style component</h2>
