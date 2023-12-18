@@ -1,6 +1,6 @@
 import React, { useState }from 'react';
 import './App.css';
-import Box from "./Box";
+import Box from "./Box";  
 
 function App() {
   const [count, setCount] = useState(0)
