@@ -6,9 +6,10 @@ export default function App2() {
   console.log("state : " + state);
 
   useEffect(() => {
+    console.log("effect : " + state);
     setState(1);
     return () => {
-      console.log("state : " + state);
+      console.log("return : " + state);
     };
   }, [state]);
 
